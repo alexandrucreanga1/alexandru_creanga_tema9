@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.FileHandler;
@@ -68,10 +69,15 @@ public class Main {
 
 
 
+        //Sorting Students by name >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        System.out.println("Sorting Students by lastName: ");
+        studentRepository.sortStudentByLastName(studentRepository.getStudentByName());
+
+
     }
 
 
-//TODO - (optional) list students order by Last Name or Birth Date !!
+//TODO - (optional) list students order by Birth Date !!
 
 
 
@@ -100,6 +106,13 @@ public class Main {
             studentByName.add(studentToAdd);
             return studentToAdd;
         }
+
+        public void sortStudentByLastName (List<Student> studentByName) {
+            studentByName.sort(Comparator.comparing(Student::getLastName));
+            System.out.println(studentByName);
+        }
+
+
 
         private void validateDateOfBirth(String dayofbithDDmmYYYY) throws NumberFormatException {
             String[] tokens = dayofbithDDmmYYYY.split("-");
